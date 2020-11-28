@@ -15,10 +15,12 @@
 #SingleInstance force
 
 ;Command-backspace deletes whole line
-!BS::Send {LShift down}{Home}{LShift Up}{Del}
+; !BS::Send {LShift down}{Home}{LShift Up}{Del}
+; I'm used to it removing one word only.
+!BS::Send {LShift down}{LCtrl down}{Left}{LShift Up}{LCtrl up}{Del}
 
 ;option-delete deletes previous word
-#BS::Send {LShift down}{LCtrl down}{Left}{LShift Up}{Lctrl up}{Del}
+#BS::Send {LShift down}{LCtrl down}{Left}{LShift Up}{LCtrl up}{Del}
 
 ; Navigation of smaller chunks (skip word)
 <!Left::Send {ctrl down}{Left}{ctrl up}
@@ -37,13 +39,15 @@
 ; Selection (uses a combination of the above with shift)
 <!+Left::Send {ctrl down}{shift down}{Left}{shift up}{ctrl up}
 <!+Right::Send {ctrl down}{shift down}{Right}{shift up}{ctrl up}
-^+Left::Send {shift down}{Home}}{shift up}
-^+Right::Send {shift down}{End}}{shift up}
-!+Up::Send {ctrl down}{shift down}{Up}}{shift up}{ctrl up}
-!+Down::Send {ctrl down}{shift down}{Down}}{shift up}{ctrl up}
-^+Up::Send {Lctrl down}{shift down}{Home}}{shift up}{Lctrl up}
-^+Down::Send {Lctrl down}{shift down}{End}}{shift up}{Lctrl up}
+^+Left::Send {shift down}{Home}{shift up}
+^+Right::Send {shift down}{End}{shift up}
+!+Up::Send {ctrl down}{shift down}{Up}{shift up}{ctrl up}
+!+Down::Send {ctrl down}{shift down}{Down}{shift up}{ctrl up}
+^+Up::Send {Lctrl down}{shift down}{Home}{shift up}{Lctrl up}
+^+Down::Send {Lctrl down}{shift down}{End}{shift up}{Lctrl up}
 
+
+<!LBUTTON::Send, {Lctrl down}{Click}{Lctrl up}
 
 ;Closing windows and programs (using the Win Key)
 <!w::Send, ^{F4}
